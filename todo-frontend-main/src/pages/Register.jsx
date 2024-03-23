@@ -1,18 +1,7 @@
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormLabel from "@mui/material/FormLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import { Formik } from "formik";
-import * as React from "react";
-import { useState } from "react";
-import * as Yup from "yup";
-import axios from "axios";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
   Button,
-  Grid,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -20,15 +9,22 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import { Formik } from "formik";
+import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import CustomSnackbar from "../components/CustomSnackbar";
 import $axios from "../lib/axios.instance";
 
 const Register = () => {
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState("");
-
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+  const [severity, setSeverity] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
 
@@ -40,7 +36,7 @@ const Register = () => {
 
   const registerUser = async (values) => {
     try {
-      const response = await $axios.post("/user/register", values);
+      const data = await $axios.post("/user/register", values);
 
       navigate("/login");
       setOpen(true);
